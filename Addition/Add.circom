@@ -6,9 +6,16 @@ pragma circom 2.1.4;
 // Create a circuit that adds the 2 inputs and outputs it .
 
 template Add() {
-   // Your code here 
-   
+    signal input a ;
+    signal input b ;
+
+    signal output c ;
+
+    c <== a + b ;
 }
 
 component main  = Add();
-
+/* INPUT ={
+    "a":32,
+    "b":2
+} */

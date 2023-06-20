@@ -1,5 +1,5 @@
 pragma circom 2.1.4;
-
+include "circomlib/mimcsponge.circom";
 
 
 // In this exercise, we will learn an important concept related to hashing . There are 2 values a and b. You want to 
@@ -16,10 +16,26 @@ pragma circom 2.1.4;
 // Output the res using 'out'.
 
 template Salt() {
+    signal input a;
+    signal input b;
+    signal input salt;
+    signal output out;
+
+
+    component hash = MiMCSponge(2,2,1);
+    hash.ins[0] <== a;
+    hash.ins[1] <== b;
+    hash.k<== salt;
+    hash.outs[0] x==> out;
     // Your code here..
 }
 
 component main  = Salt();
+/* INPUT = {
+    "a": "5",
+    "b": "77",
+    "salt": 1
+} */
 // By default all inputs are private in circom. We will not define any input as public 
 // because we want them to be a secret , at least in this case. 
 

@@ -1,17 +1,28 @@
 pragma circom 2.1.4;
 
+include "circomlib/comparators.circom";
+// include "https://github.com/0xPARC/circom-secp256k1/blob/master/circuits/bigint.circom";
 
-// Input : a , length of 2 .
-// Output : c .
-// In this exercise , you have to check that a[0] is NOT equal to a[1], if not equal, output 1, else output 0.
-// You are free to use any operator you may like . 
+template Example () {
+    signal input a;
+    signal input b;
 
-// HINT:NEGATION
+    signal output c;
+    
+    
+    component hash = IsEqual();
+    hash.in[1] <== b;
+    hash.in[0] <== a;
+    log("hash", hash.out);
+    c <== 1- hash.out;
 
-template NotEqual() {
 
-    // Your code here.
-   
+
 }
 
-component main = NotEqual();
+component main { public [ a ] } = Example();
+
+/* INPUT = {
+    "a": "599",
+    "b": "77"
+} */
